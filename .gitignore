@@ -1,0 +1,5 @@
+Back-end/.env
+Back-end/node_modules
+Front-end/.parcel-cache
+Front-end/dist
+Front-end/node_modules
