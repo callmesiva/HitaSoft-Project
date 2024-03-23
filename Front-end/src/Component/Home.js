@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Popup from "./Popup";
 import url from "../utils/constUrl";
@@ -21,7 +21,6 @@ function Home() {
       setBborder(0);
       setLoader(true);
       const response = await axios.get(`${url}/postlist`);
-      localStorage.setItem("fetchData", true);
       setLoader(false);
       setData(response?.data?.totalData);
       setTotalData(response?.data?.totalCount);
@@ -36,14 +35,15 @@ function Home() {
       let pageData = await axios.get(`${url}/getpage?page=
       ${crrPage}&limit=${10}`);
       setData(pageData?.data);
+      //scroll to top after load the page
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     } catch (error) {
       console.error("Error fetching page data:", error);
     }
   }
-
-  // useEffect(() => {
-  //   if (localStorage.getItem("fetchData")) fetchData();
-  // }, []);
 
   //Delete post
   const deleteEmp = async (details) => {
@@ -52,8 +52,8 @@ function Home() {
       let arr = data.filter((post) => post.id != details.id);
       setData(arr);
     } catch (error) {
-      console.error("Error deleting employee details:", error);
-      alert("Failed to delete employee details");
+      console.error("Error deleting post:", error);
+      alert("Failed to delete post");
     }
   };
 

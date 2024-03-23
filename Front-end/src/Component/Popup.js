@@ -8,6 +8,7 @@ function Popup({ onClose, details, setData, data }) {
   const [body, setBody] = useState(details?.body || "");
   const [image, setImage] = useState("");
 
+  //Convert image to base64 after upload
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -19,6 +20,7 @@ function Popup({ onClose, details, setData, data }) {
     }
   };
 
+  //Update post
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

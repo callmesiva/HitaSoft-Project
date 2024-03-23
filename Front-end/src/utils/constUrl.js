@@ -1,2 +1,2 @@
-const backendUrl = "http://localhost:3800";
+const backendUrl = "https://hitasoft-project.onrender.com";
 export default backendUrl;
